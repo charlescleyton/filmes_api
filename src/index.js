@@ -15,6 +15,7 @@ const filmeSchema = new mongoose.model('Film', {
     image_url: String,
     trailer_url: String,
     genero: String,
+    ano: Number,
   });
 
 app.get('/', async (req, res) => {
@@ -29,6 +30,7 @@ app.post('/', async (req, res) => {
         image_url: req.body.image_url,
         trailer_url: req.body.trailer_url,
         genero: req.body.genero, 
+        ano: req.body.ano,
     });
     await film.save();
     res.send(film);
@@ -46,6 +48,7 @@ app.put('/:id', async (req, res) => {
         image_url: req.body.image_url,
         trailer_url: req.body.trailer_url,
         genero: req.body.genero,
+        ano: req.body.ano,
     });
     res.send(film);
 })
