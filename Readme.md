@@ -1,4 +1,4 @@
-# **Api para filmes - MongoDB**
+# **Api Node.js para filmes - MongoDB**
 
 * Descrição da Api
 * Funcionalidade
