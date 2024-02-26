@@ -43,21 +43,29 @@ app.post('/', async (req, res) => {
 })
 
 app.delete('/:id', async (req, res) => {
-    const film = await filmeSchema.findByIdAndDelete(req.params.id);
-    res.send(film.title + "\nFilme deletado com sucesso");
+    try {
+        const film = await filmeSchema.findByIdAndDelete(req.params.id);
+        res.send("Filme: " + film.titulo + "- Deletado com sucesso");
+    } catch (error) {
+        res.send("Filme não encontrado");
+    }
 })
 
 app.put('/:id', async (req, res) => {
-    await filmeSchema.findByIdAndUpdate(req.params.id, {
-        titulo: req.body.titulo,
-        sinopse: req.body.sinopse,
-        img_url: req.body.img_url,
-        trailer_url: req.body.trailer_url,
-        genero: req.body.genero,
-        ano: req.body.ano,
-        roteiro: req.body.roteiro,
-    });
-    res.send("Filme atualizado com sucesso");
+    try {
+        await filmeSchema.findByIdAndUpdate(req.params.id, {
+            titulo: req.body.titulo,
+            sinopse: req.body.sinopse,
+            img_url: req.body.img_url,
+            trailer_url: req.body.trailer_url,
+            genero: req.body.genero,
+            ano: req.body.ano,
+            roteiro: req.body.roteiro,
+        });
+        res.send("Filme atualizado com sucesso");
+    } catch (error) {
+        res.send("Filme não encontrado");        
+    }
 })
 
 app.listen(port, () => {
